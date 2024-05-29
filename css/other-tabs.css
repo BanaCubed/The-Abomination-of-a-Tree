@@ -26,7 +26,7 @@
 }
 
 #info:hover {
-	transform: scale(1.2, 1.2);
+	transform: scale(1.2, 1.2) rotate(720deg);
 	text-shadow: 5px 0 10px #02f2f2,
               -3px 0 12px #02f2f2;
 }
@@ -68,7 +68,7 @@
 }
 
 #version:hover {
-	transform: scale(1.1, 1.1);
+	transform: scale(1.1, 11) rotate(90deg);
 	right: 4.8px;
 }
 

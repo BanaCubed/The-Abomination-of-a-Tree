@@ -163,7 +163,7 @@ function layerDataReset(layer, keep = []) {
 
 
 function addPoints(layer, gain) {
-	player[layer].points = player[layer].points.add(gain).max(0)
+	player[layer].points = player[layer].points.add(gain)
 	if (player[layer].best) player[layer].best = player[layer].best.max(player[layer].points)
 	if (player[layer].total) player[layer].total = player[layer].total.add(gain)
 }
@@ -337,7 +337,7 @@ function gameLoop(diff) {
 			diff = limit
 	}
 	addTime(diff)
-	player.points = player.points.add(tmp.pointGen.times(diff)).max(0)
+	player.points = player.points.add(tmp.pointGen.times(diff))
 
 	for (let x = 0; x <= maxRow; x++){
 		for (item in TREE_LAYERS[x]) {

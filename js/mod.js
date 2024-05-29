@@ -1,26 +1,23 @@
 let modInfo = {
-	name: "The ??? Tree",
-	id: "mymod",
-	author: "nobody",
-	pointsName: "points",
+	name: "The Abomination of a Tree",
+	id: "omagawditsarussianspy",
+	author: "BanaCubed with help from Satan",
+	pointsName: "p̵̝̅ò̴̡i̴͎̓n̸̪͑ẗ̴̨́s̴̪̾",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (9), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "Literally nothing",
+	num: "sauce, michael here",
+	name: "your home security is great, or is it?",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
-		- Added things.<br>
-		- Added stuff.`
+let changelog = `<button>Warning! This button does absolultely nothing!</button>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -42,7 +39,10 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	let gain = new Decimal(0.1)
+	if(hasUpgrade('p', 12)) gain = gain.times(tmp.p.upgrades[12].effect)
+	if(hasUpgrade('p', 13)) gain = gain.times(tmp.p.upgrades[13].effect)
+	if(hasUpgrade('p', 11)) gain = gain.pow(3)
 	return gain
 }
 
