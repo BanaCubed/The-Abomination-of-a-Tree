@@ -7,7 +7,7 @@ let modInfo = {
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (9), // Used for hard resets and new players
+	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -40,9 +40,21 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(0.1)
+	gain = gain.times(tmp.n.effect)
+	let power = tmp.n.buyables[11].effect
+	if(hasUpgrade('p', 11)) power = power.add(2)
+	if(hasMilestone('s', 1)) {
+		power = power.abs()
+		if(gain.lte(1)) power = Decimal.sub(0, power)
+		else power = power
+	}
+	power = power.add(1)
+	gain = gain.pow(power)
 	if(hasUpgrade('p', 12)) gain = gain.times(tmp.p.upgrades[12].effect)
 	if(hasUpgrade('p', 13)) gain = gain.times(tmp.p.upgrades[13].effect)
-	if(hasUpgrade('p', 11)) gain = gain.pow(3)
+	if(hasUpgrade('p', 14)) gain = gain.times(-2)
+	if(gain.lte(0.0001) && hasMilestone('s', 0)) gain = new Decimal(0.0001)
+	gain = gain.add(tmp.s.effect)
 	return gain
 }
 
@@ -56,7 +68,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return getPointGen().eq(0)
 }
 
 

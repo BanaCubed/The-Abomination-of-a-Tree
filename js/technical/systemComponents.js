@@ -142,7 +142,8 @@ var systemComponents = {
         <a class="link" href="https://discord.gg/F3xveHV" target="_blank" v-bind:style="modInfo.discordLink ? {'font-size': '16px'} : {}">The Modding Tree Discord</a><br>
         <a class="link" href="http://discord.gg/wwQfgPa" target="_blank" v-bind:style="{'font-size': '16px'}">Main Prestige Tree server</a><br>
 		<br><br>
-        Time Played: {{ formatTime(player.timePlayed) }}<br><br>
+		<h3>Game Stats</h3><br><br>11 Upgrades<br>1 Buyables<br>5 Milestones<br>3 Prestige Layers<br>0 Fans<br><br><br>
+        Time Played: {{ formatTime(player.timePlayed) }}<br><br><br>
         <h3>Hotkeys</h3><br>
         <span v-for="key in hotkeys" v-if="player[key.layer].unlocked && tmp[key.layer].hotkeys[key.id].unlocked"><br>{{key.description}}</span></div>
     `
@@ -155,11 +156,13 @@ var systemComponents = {
                 <td><button class="opt" onclick="save()">Save</button></td>
                 <td><button class="opt" onclick="toggleOpt('autosave')">Autosave: {{ options.autosave?"ON":"OFF" }}</button></td>
                 <td><button class="opt" onclick="hardReset()">HARD RESET</button></td>
+                <td><button class="opt" onclick="hardReset(true)">HARDER RESET</button></td>
             </tr>
             <tr>
                 <td><button class="opt" onclick="exportSave()">Export to clipboard</button></td>
                 <td><button class="opt" onclick="importSave()">Import</button></td>
                 <td><button class="opt" onclick="toggleOpt('offlineProd')">Offline Prod: {{ options.offlineProd?"ON":"OFF" }}</button></td>
+                <td><button class="opt" onclick="debugpoint()">DEBUG: gain 1 point</button></td>
             </tr>
             <tr>
                 <td><button class="opt" onclick="switchTheme()">Theme: {{ getThemeName() }}</button></td>
@@ -169,7 +172,7 @@ var systemComponents = {
             <tr>
                 <td><button class="opt" onclick="toggleOpt('hideChallenges')">Completed Challenges: {{ options.hideChallenges?"HIDDEN":"SHOWN" }}</button></td>
                 <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">Single-Tab Mode: {{ options.forceOneTab?"ALWAYS":"AUTO" }}</button></td>
-				<td><button class="opt" onclick="toggleOpt('forceTooltips'); needsCanvasUpdate = true">Shift-Click to Toggle Tooltips: {{ options.forceTooltips?"ON":"OFF" }}</button></td>
+				<td><button class="opt" onclick="toggleOpt('tooltipForcing'); needsCanvasUpdate = true">Shift-Click to Toggle Tooltips: {{ options.tooltipForcing?"ON":"OFF" }}</button></td>
 				</tr> 
         </table>`
     },

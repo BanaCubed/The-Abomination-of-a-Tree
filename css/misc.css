@@ -81,3 +81,7 @@
 .hl {
 	border-top: 3px solid var(--color);
 }
+
+.n.upg {
+    width: 256px;
+}
